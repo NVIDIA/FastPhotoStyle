@@ -33,11 +33,11 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 - Content image
 
-![](images/content1.png)
+![](images/content1_small.png)
 
 - Style image
 
-![](images/style1.png)
+![](images/style1_small.png)
 
 ### Step 4: Test the photorealistic image stylization code
 
@@ -45,4 +45,4 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 - Stylized content image
 
-![](results/example1.png)
+![](results/example1_small.png)
