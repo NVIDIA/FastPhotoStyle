@@ -6,7 +6,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 ### About
 
-![](illustration.gif)
+![](illustration.png)
 
 
 This code repository contains an implementation of our fast photorealistic style transfer algorithm. Given a content photo and a style photo, the code can transfer the style of the style photo to the content photo. The details of the algorithm behind the code is documented in our arxiv paper. Please cite the paper if this code repository is used in your publications.
