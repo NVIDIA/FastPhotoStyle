@@ -59,7 +59,7 @@ labelme
 
 - Start labeling regions in the content& style image. The corresponding regions (e.g., sky-to-sky) should have the same label.
 
-- The labeling result is saved in a ".json" file. By running the following command, you will get the "label.png" under "path/example_json", which is the label map we use in our code.
+- The labeling result is saved in a ".json" file. By running the following command, you will get the "label.png" under "path/example_json", which is the label map used in our code.
 
 ```
 labelme_json_to_dataset example.json -o path/example_json
