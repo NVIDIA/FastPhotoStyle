@@ -46,3 +46,27 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 - Stylized content image
 
 ![](results/example1_small.png)
+
+### Label map
+
+By default, our algorithm performs the global stylization. In order to obtain a better result or give users control to decide the content–style correspondences, our algorithm supports spatial control through using semantic label maps. We manully 
+
+- 1) Install the tool [labelme](https://github.com/wkentaro/labelme) and start it:
+
+```
+labelme
+``` 
+
+- 2) Start labeling regions in the content& style image. The correspondent regions (sky-to-sky) should have the same label.
+
+- 3) After labeling each image, run the following command and get the "label.png" in "path/example_json". "label.png" is a 1-channel image consists of labels starting from 0.
+
+```
+labelme_json_to_dataset example.json -o path/example_json
+```  
+- 4)
+
+
+## Acknowledgement
+
+- We express gratitudes to the great work [DPST](https://www.cs.cornell.edu/~fujun/files/style-cvpr17/style-cvpr17.pdf) and its [Torch](https://github.com/luanfujun/deep-photo-styletransfer) and [Tensorflow](https://github.com/LouieYang/deep-photo-styletransfer-tf) implementations.
