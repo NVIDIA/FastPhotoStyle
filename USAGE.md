@@ -3,7 +3,7 @@ Copyright (C) 2018 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 
 
-### Step 1: Setup environment and install required libraries
+### Preparation 1: Setup environment and install required libraries
 
 - OS: Ubuntu 16.04
 - CUDA: 9.1
@@ -16,13 +16,12 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
   5. `pip install cupy`
   6. `pip install pynvrtc`
 
-### Step 2: Download pretrained networks
+### Preparation 2: Download pretrained networks
 
 - Download pretrained networks via the following [link](https://drive.google.com/open?id=1ENgQm9TgabE1R99zhNf5q6meBvX6WFuq).
-- Unzip and store the model files under models
+- Unzip and store the model files under `models`.
 
-### Step 3: Download example images
-
+### Example 1: Transfer the style of a style photo to a content photo.
 - Go to the image folder: `cd images`
 - Download content image 1: `axel -n 1 http://freebigpictures.com/wp-content/uploads/shady-forest.jpg --output=content1.png`
 - Download style image 1: `axel -n 1 https://vignette.wikia.nocookie.net/strangerthings8338/images/e/e0/Wiki-background.jpeg/revision/latest?cb=20170522192233 --output=style1.png`
@@ -39,15 +38,15 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 ![](images/style1_small.png)
 
-### Step 4: Test the photorealistic image stylization code
-
-- `python demo.py`
+- Test the photorealistic image stylization code `python demo.py`
 
 - Stylized content image
 
 ![](results/example1_small.png)
 
-### Label map
+### TODO Example 2: Transfer the style of a style photo to a content photo with semantic label maps.
+
+#### Label map
 
 By default, our algorithm performs the global stylization. In order to give users control to decide the content–style correspondences for better stylization effects, we also support the spatial control through manully drawing label maps. 
 
