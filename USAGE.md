@@ -57,7 +57,7 @@ By default, our algorithm performs the global stylization. In order to obtain a 
 labelme
 ``` 
 
-- Start labeling regions in the content& style image. The correspondent regions (sky-to-sky) should have the same label.
+- Start labeling regions in the content& style image. The correspondent regions (e.g., sky-to-sky) should have the same label.
 
 - After labeling each image, run the following command and get the "label.png" in "path/example_json". "label.png" is a 1-channel image consists of labels starting from 0.
 
