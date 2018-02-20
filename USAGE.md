@@ -59,7 +59,7 @@ labelme
 
 - Start labeling regions in the content& style image. The corresponding regions (e.g., sky-to-sky) should have the same label.
 
-- The labelling result is saved in a ".json" file. Run the following command and get the "label.png" in "path/example_json". "label.png" is a 1-channel image consists of labels starting from 0.
+- The labelling result is saved in a ".json" file. Run the following command and get the "label.png" in "path/example_json". "label.png" is a 1-channel image (usually looks totally black) consists of labels starting from 0.
 
 ```
 labelme_json_to_dataset example.json -o path/example_json
