@@ -7,7 +7,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 - OS: Ubuntu 16.04
 - CUDA: 9.1
-- Python: Anaconda2
+- Python: **Python 2** from Anaconda2
 - Python Library Dependency
   1. `conda install pytorch torchvision cuda90 -y -c pytorch`
   2. `conda install -y -c menpo opencv3`
