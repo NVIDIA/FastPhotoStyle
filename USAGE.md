@@ -51,7 +51,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 By default, our algorithm performs the global stylization. In order to obtain a better result or give users control to decide the content–style correspondences, our algorithm supports spatial control through using semantic label maps. We manully 
 
-- Install the tool [labelme](https://github.com/wkentaro/labelme) and start it:
+- Install the tool [labelme](https://github.com/wkentaro/labelme) and run the following command to start it:
 
 ```
 labelme
