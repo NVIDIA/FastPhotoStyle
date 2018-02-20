@@ -10,7 +10,7 @@ This code repository contains an implementation of our fast photorealistic style
 
 [Yijun Li, Ming-Yu Liu, Xueting Li, Ming-Hsuan Yang, Jan Kautz "A Closed-form Solution to Photorealistic Image Stylization" arXiv preprint arXiv:1802.06474](https://arxiv.org/abs/1802.06474)
 
-![](illustration.png)
+![](alg_in_action.png)
 
 
 
