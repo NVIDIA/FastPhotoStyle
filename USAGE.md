@@ -49,7 +49,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 ### Label map
 
-By default, our algorithm performs the global stylization. In order to obtain a better result or give users control to decide the content–style correspondences, we also support the spatial control through manully drawing semantic label maps. 
+By default, our algorithm performs the global stylization. In order to give users control to decide the content–style correspondences for better stylization effects, we also support the spatial control through manully drawing semantic label maps. 
 
 - Install the tool [labelme](https://github.com/wkentaro/labelme) and run the following command to start it:
 
