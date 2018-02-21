@@ -56,14 +56,22 @@ By default, our algorithm performs the global stylization. In order to give user
 labelme
 ``` 
 
-- Start labeling regions in the content& style image. The corresponding regions (e.g., sky-to-sky) should have the same label.
+- Start labeling regions (drawing polygons) in the content& style image. The corresponding regions (e.g., sky-to-sky) should have the same label.
 
-- The labeling result is saved in a ".json" file. By running the following command, you will get the "label.png" under "path/example_json", which is the label map used in our code.
+- The labeling result is saved in a ".json" file. By running the following command, you will get the "label.png" under "path/example_json", which is the label map used in our code. "label.png" is a 1-channel image (usually looks totally black) consists of consecutive labels starting from 0.
 
 ```
 labelme_json_to_dataset example.json -o path/example_json
 ```  
-"label.png" is a 1-channel image (usually looks totally black) consists of consecutive labels starting from 0. You will get a visualized reuslt "label_viz.png" at the same time.
+
+Now, we have four inputs and set their paths in _demo.py_:
+
+```
+content_image_path = "./yourContent.png"
+content_seg_path = "./yourContent_label.png"
+style_image_path = "./yourstyle.png"
+style_seg_path = "./yourStyle_label.png"
+```
 
 
 ## Acknowledgement
