@@ -44,7 +44,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 ![](results/example1_small.png)
 
-### TODO Example 2: Transfer the style of a style photo to a content photo with semantic label maps.
+### Example 2: Transfer the style of a style photo to a content photo with semantic label maps.
 
 #### Label map
 
@@ -72,6 +72,10 @@ content_seg_path = "./yourContent_label.png"
 style_image_path = "./yourstyle.png"
 style_seg_path = "./yourStyle_label.png"
 ```
+
+Below is a 3-label transferring exaxmple:
+
+![](transfer_with_label.png)
 
 
 ## Acknowledgement
