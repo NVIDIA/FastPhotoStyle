@@ -69,7 +69,7 @@ Now, we have four inputs and set their paths in _demo.py_:
 ```
 content_image_path = "./yourContent.png"
 content_seg_path = "./yourContent_label.png"
-style_image_path = "./yourstyle.png"
+style_image_path = "./yourStyle.png"
 style_seg_path = "./yourStyle_label.png"
 ```
 
