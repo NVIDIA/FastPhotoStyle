@@ -119,7 +119,7 @@ class PhotoWCT(nn.Module):
       tmp_target_feature = self.__wct_core(cont_feat_view, styl_feat_view)
       target_feature = tmp_target_feature.view_as(cont_feat)
       ccsF = target_feature.float().unsqueeze(0)
-      return ccsF
+      return torch.autograd.Variable(ccsF)
 
     t_cont_seg = cv2.resize(cont_seg, (cont_w, cont_h), interpolation = cv2.INTER_NEAREST)
     t_styl_seg = cv2.resize(styl_seg, (styl_w, styl_h), interpolation = cv2.INTER_NEAREST)
@@ -140,12 +140,12 @@ class PhotoWCT(nn.Module):
 
     target_feature = target_feature.view_as(cont_feat)
     ccsF = target_feature.float().unsqueeze(0)
-    return ccsF
+    return torch.autograd.Variable(ccsF)
 
   def __wct_core(self, cont_feat, styl_feat):
     cFSize = cont_feat.size()
     c_mean = torch.mean(cont_feat, 1)  # c x (h x w)
-    c_mean = c_mean.unsqueeze(1).expand_as(cont_feat)
+    c_mean = c_mean.expand_as(cont_feat)
     cont_feat = cont_feat - c_mean
 
     iden = torch.eye(cFSize[0]).cuda()#.double()
@@ -163,7 +163,7 @@ class PhotoWCT(nn.Module):
 
     sFSize = styl_feat.size()
     s_mean = torch.mean(styl_feat, 1)
-    styl_feat = styl_feat - s_mean.unsqueeze(1).expand_as(styl_feat)
+    styl_feat = styl_feat - s_mean.expand_as(styl_feat)
     styleConv = torch.mm(styl_feat, styl_feat.t()).div(sFSize[1] - 1)
     s_u, s_e, s_v = torch.svd(styleConv, some=False)
 
@@ -180,7 +180,7 @@ class PhotoWCT(nn.Module):
 
     s_d = (s_e[0:k_s]).pow(0.5)
     targetFeature = torch.mm(torch.mm(torch.mm(s_v[:, 0:k_s], torch.diag(s_d)), (s_v[:, 0:k_s].t())), whiten_cF)
-    targetFeature = targetFeature + s_mean.unsqueeze(1).expand_as(targetFeature)
+    targetFeature = targetFeature + s_mean.expand_as(targetFeature)
     return targetFeature
 
   def __large_dff(self, a, b):
