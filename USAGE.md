@@ -73,7 +73,7 @@ style_image_path = "./yourStyle.png"
 style_seg_path = "./yourStyle_label.png"
 ```
 
-Below is a 3-label transferring exaxmple:
+Below is a 3-label transferring example:
 
 ![](transfer_with_label.png)
 
