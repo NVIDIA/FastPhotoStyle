@@ -3,8 +3,7 @@ Copyright (C) 2018 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 """
 src = '''
-	#include <math_constants.h>
-	#include <math_functions.h>
+	#include "/usr/local/cuda/include/math_functions.h"
 	#define TB 256
 	#define EPS 1e-7
 
