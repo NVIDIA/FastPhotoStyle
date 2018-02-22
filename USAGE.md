@@ -36,9 +36,9 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 ### Example 2: Transfer the style of a style photo to a content photo with semantic label maps.
 
-##### Prepare label maps
-
 By default, our algorithm performs the global stylization. In order to give users control to decide the content–style correspondences for better stylization effects, we also support the spatial control through manully drawing label maps. 
+
+#### Prepare label maps
 
 - Install the tool [labelme](https://github.com/wkentaro/labelme) and run the following command to start it: `labelme`
 
@@ -50,7 +50,8 @@ By default, our algorithm performs the global stylization. In order to give user
 labelme_json_to_dataset example.json -o path/example_json
 ```  
 
-##### Stylize with label maps
+#### Stylize with label maps
+
 Now, we have four inputs and set their paths in `demo.py`:
 ```
 python demo.py \
