@@ -56,9 +56,9 @@ Now, we have four inputs and set their paths in `demo.py`:
 ```
 python demo.py \
    --content_image_path PATH-TO-YOUR-CONTENT-IMAGE \ 
-   --content_seg_path PATH-TO-YOUR-CONTENT-SEG \ 
+   --content_seg_path PATH-TO-YOUR-CONTENT-LABEL \ 
    --style_image_path PATH-TO-YOUR-STYLE-IMAGE \ 
-   --style_seg_path PATH-TO-YOUR-STYLE-SEG \ 
+   --style_seg_path PATH-TO-YOUR-STYLE-LABEL \ 
    --output_image_path PATH-TO-YOUR-OUTPUT
 ```
 
