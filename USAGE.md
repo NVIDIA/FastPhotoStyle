@@ -7,7 +7,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 - OS: Ubuntu 16.04
 - CUDA: 9.1
-- Python: **Python 2** from Anaconda2
+- Python: **Python 2 from Anaconda2**
 - Python Library Dependency
   1. `conda install pytorch torchvision cuda90 -y -c pytorch`
   2. `conda install -y -c menpo opencv3`
@@ -30,25 +30,14 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
   - `convert -resize 50% style1.png style1.png`
 - Go to the root folder: `cd ..`
 
-- Content image
-
-![](images/content1_small.png)
-
-- Style image
-
-![](images/style1_small.png)
-
 - Test the photorealistic image stylization code `python demo.py`
 
-- Stylized content image
 
-![](results/example1_small.png)
-
-### TODO Example 2: Transfer the style of a style photo to a content photo with semantic label maps.
+### Example 2: Transfer the style of a style photo to a content photo with semantic label maps.
 
 #### Label map
 
-By default, our algorithm performs the global stylization. In order to give users control to decide the content–style correspondences for better stylization effects, we also support the spatial control through manully drawing label maps. 
+By default, our algorithm performs the global stylization. In order to give users control to decide the content–style correspondences for better stylization effects, we also support the spatial control through manully drawn label maps or semantic segmentation network-predicted label maps. 
 
 - Install the tool [labelme](https://github.com/wkentaro/labelme) and run the following command to start it:
 
@@ -63,7 +52,7 @@ labelme
 ```
 labelme_json_to_dataset example.json -o path/example_json
 ```  
-"label.png" is a 1-channel image (usually looks totally black) consists of consecutive labels starting from 0. You will get a visualized reuslt "label_viz.png" at the same time.
+"label.png" is a 1-channel image (usually looks totally black) consists of consecutive labels starting from 0. For visualization, check "label_viz.png".
 
 
 ## Acknowledgement
