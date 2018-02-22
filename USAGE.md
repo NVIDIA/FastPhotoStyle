@@ -61,7 +61,7 @@ python demo.py \
    --output_image_path PATH-TO-YOUR-OUTPUT
 ```
 
-Below is a 3-label transfering example (images and labels are from the [DPST](https://github.com/luanfujun/deep-photo-styletransfer) work by Luan et al.):
+Below is a 3-label transferring example (images and labels are from the [DPST](https://github.com/luanfujun/deep-photo-styletransfer) work by Luan et al.):
 
 ![](transfer_with_label.png)
 
