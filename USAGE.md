@@ -61,6 +61,9 @@ python demo.py \
    --output_image_path PATH-TO-YOUR-OUTPUT
 ```
 
+Below is a 3-label transfering example:
+![](transfer_with_label.png)
+
 ## Acknowledgement
 
 - We express gratitudes to the great work [DPST](https://www.cs.cornell.edu/~fujun/files/style-cvpr17/style-cvpr17.pdf) by Luan et al. and their [Torch](https://github.com/luanfujun/deep-photo-styletransfer) and [Tensorflow](https://github.com/LouieYang/deep-photo-styletransfer-tf) implementations.
