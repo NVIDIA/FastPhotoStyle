@@ -13,8 +13,9 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
   2. `conda install -y -c menpo opencv3`
   3. `conda install -y -c anaconda pip`
   4. `pip install scikit-umfpack`
-  5. `pip install cupy`
-  6. `pip install pynvrtc`
+  5. `pip install -U setuptools`
+  6. `pip install cupy`
+  7. `pip install pynvrtc`
 
 ### Download pretrained networks
 
@@ -65,6 +66,15 @@ python demo.py \
 Below is a 3-label transferring example (images and labels are from the [DPST](https://github.com/luanfujun/deep-photo-styletransfer) work by Luan et al.):
 
 ![](transfer_with_label.png)
+
+### Docker image
+
+We also provide a docker image for testing the code. 
+
+  1. Build the docker image `docker build -t your-docker-image:v1.0 .`
+  2. Run an interactive session `docker run -v YOUR_PATH:YOUR_PATH --runtime=nvidia -i -t your-docker-image:v1.0 /bin/bash`
+  3. `cd YOUR_PATH`
+  4. `./demo.sh`
 
 ## Acknowledgement
 
