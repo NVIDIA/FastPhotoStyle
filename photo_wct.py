@@ -128,7 +128,7 @@ class PhotoWCT(nn.Module):
 
     for l in self.label_set:
       if self.label_indicator[l]==0:
-        continue;
+        continue
       cont_mask = np.where(t_cont_seg.reshape(t_cont_seg.shape[0] * t_cont_seg.shape[1]) == l)
       styl_mask = np.where(t_styl_seg.reshape(t_styl_seg.shape[0] * t_styl_seg.shape[1]) == l)
       if cont_mask[0].size <= 0 or styl_mask[0].size <= 0 :
@@ -186,8 +186,4 @@ class PhotoWCT(nn.Module):
     return targetFeature
 
   def __large_dff(self, a, b):
-    if (a / b >= 100):
-      return True
-    if (b / a >= 100):
-      return True
-    return False
+    return a / b >= 100 or b / a >= 100

@@ -3,7 +3,6 @@ Copyright (C) 2018 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 """
 from __future__ import division
-import torch
 import torch.nn as nn
 import scipy.misc
 import numpy as np

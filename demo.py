@@ -2,8 +2,7 @@
 Copyright (C) 2018 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 """
-import os
-import torch
+
 from torch.autograd import Variable
 import torchvision.transforms as transforms
 import torchvision.utils as utils
@@ -15,7 +14,6 @@ from PIL import Image
 from photo_wct import PhotoWCT
 from photo_smooth import Propagator
 from smooth_filter import smooth_filter
-
 
 parser = argparse.ArgumentParser(description='Photorealistic Image Stylization')
 parser.add_argument('--vgg1', default='./models/vgg_normalised_conv1_1_mask.t7', help='Path to the VGG conv1_1')
