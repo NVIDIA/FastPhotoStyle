@@ -16,6 +16,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
   5. `pip install -U setuptools`
   6. `pip install cupy`
   7. `pip install pynvrtc`
+  8. `sudo apt-get install -y axel imagemagick`
 
 ### Download pretrained networks
 
