@@ -71,6 +71,7 @@ Below is a 3-label transferring example (images and labels are from the [DPST](h
 
 We also provide a docker image for testing the code. 
 
+  1. Install nvidia-docker. Follow the instruction in the [NVIDIA-DOCKER README page](https://github.com/NVIDIA/nvidia-docker).
   1. Build the docker image `docker build -t your-docker-image:v1.0 .`
   2. Run an interactive session `docker run -v YOUR_PATH:YOUR_PATH --runtime=nvidia -i -t your-docker-image:v1.0 /bin/bash`
   3. `cd YOUR_PATH`
