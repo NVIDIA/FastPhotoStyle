@@ -10,12 +10,11 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 - Python: **Python 2 from Anaconda2**
 - Python Library Dependency
   1. `conda install pytorch torchvision cuda90 -y -c pytorch`
-  2. `conda install -y -c menpo opencv3`
-  3. `conda install -y -c anaconda pip`
-  4. `pip install scikit-umfpack`
-  5. `pip install -U setuptools`
-  6. `pip install cupy`
-  7. `pip install pynvrtc`
+  2. `conda install -y -c anaconda pip`
+  3. `pip install scikit-umfpack`
+  4. `pip install -U setuptools`
+  5. `pip install cupy`
+  6. `pip install pynvrtc`
 
 ### Download pretrained networks
 

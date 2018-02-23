@@ -10,7 +10,7 @@ import torchvision.utils as utils
 import argparse
 import time
 import numpy as np
-import cv2
+
 from PIL import Image
 from photo_wct import PhotoWCT
 from photo_smooth import Propagator
@@ -80,8 +80,8 @@ for f in cont_img_list:
   out_img = p_pro.process(output_image_path, content_image_path)
   end_propagation_time = time.time()
   print('Elapsed time in propagation: %f' % (end_propagation_time - start_propagation_time))
-  cv2.imwrite(output_image_path, out_img)
-
+  out_img.save(output_image_path)
+  
   start_postprocessing_time = time.time()
   out_img = smooth_filter(output_image_path, content_image_path, f_radius=15,f_edge=1e-1)
   end_postprocessing_time = time.time()
