@@ -19,7 +19,6 @@ We only tested our code in the following environment.
 - Install requirement
   - `sudo apt-get install -y axel imagemagick` (Only used for demo)
   - `conda install pytorch=0.3.0 torchvision cuda90 -y -c pytorch`
-  - `conda install -y -c menpo opencv3`
   - `pip install scikit-umfpack`
   - `pip install -U setuptools`
   - `pip install cupy`
