@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y wget build-essential axel imagemagick p
 RUN wget https://repo.continuum.io/archive/Anaconda2-5.0.1-Linux-x86_64.sh -P /tmp
 RUN bash /tmp/Anaconda2-5.0.1-Linux-x86_64.sh -b -p $ANACONDA
 RUN rm /tmp/Anaconda2-5.0.1-Linux-x86_64.sh -rf
-RUN conda install -y pytorch torchvision cuda90 -c pytorch
+RUN conda install -y pytorch=0.3.0 torchvision cuda90 -c pytorch
 RUN conda install -y -c menpo opencv3
 RUN pip install scikit-umfpack
 RUN pip install cupy
