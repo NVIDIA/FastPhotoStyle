@@ -1,3 +1,5 @@
+rm images -rf;
+rm results -rf;
 mkdir images && mkdir results;
 cd images;
 axel -n 1 http://freebigpictures.com/wp-content/uploads/shady-forest.jpg --output=content1.png;
