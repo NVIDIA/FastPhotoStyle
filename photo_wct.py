@@ -6,8 +6,10 @@ from models import *
 import torch
 import torch.nn as nn
 from torch.utils.serialization import load_lua
+
 import numpy as np
-import cv2
+
+from PIL import Image
 
 class PhotoWCT(nn.Module):
   def __init__(self, args):
@@ -121,12 +123,12 @@ class PhotoWCT(nn.Module):
       ccsF = target_feature.float().unsqueeze(0)
       return ccsF
 
-    t_cont_seg = cv2.resize(cont_seg, (cont_w, cont_h), interpolation = cv2.INTER_NEAREST)
-    t_styl_seg = cv2.resize(styl_seg, (styl_w, styl_h), interpolation = cv2.INTER_NEAREST)
+    t_cont_seg = np.asarray(Image.fromarray(cont_seg, mode='RGB').resize((cont_w, cont_h), Image.NEAREST))
+    t_styl_seg = np.asarray(Image.fromarray(styl_seg, mode='RGB').resize((styl_w, styl_h), Image.NEAREST))
 
     for l in self.label_set:
       if self.label_indicator[l]==0:
-        continue;
+        continue
       cont_mask = np.where(t_cont_seg.reshape(t_cont_seg.shape[0] * t_cont_seg.shape[1]) == l)
       styl_mask = np.where(t_styl_seg.reshape(t_styl_seg.shape[0] * t_styl_seg.shape[1]) == l)
       if cont_mask[0].size <= 0 or styl_mask[0].size <= 0 :
@@ -184,8 +186,4 @@ class PhotoWCT(nn.Module):
     return targetFeature
 
   def __large_dff(self, a, b):
-    if (a / b >= 100):
-      return True
-    if (b / a >= 100):
-      return True
-    return False
+    return a / b >= 100 or b / a >= 100

@@ -3,15 +3,14 @@ Copyright (C) 2018 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 """
 from __future__ import division
-import torch
 import torch.nn as nn
 import scipy.misc
 import numpy as np
 import scipy.sparse
 import scipy.sparse.linalg
 from numpy.lib.stride_tricks import as_strided
-import cv2
 
+from PIL import Image
 
 class Propagator(nn.Module):
   def __init__(self, beta=0.9999):
@@ -45,12 +44,10 @@ class Propagator(nn.Module):
     V[:,1] = solver(B[:,1])
     V[:,2] = solver(B[:,2])
     V = V*(1-self.beta)
-    V = np.reshape(V,(h1,w1,k))
-    V[V > 1] = 1
-    V[V < 0] = 0
+    V = V.reshape(h1,w1,k)
     V = V[2:2+h,2:2+w,:]
-    img = np.uint8(V*255)
-    img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    
+    img = Image.fromarray(np.uint8(np.clip(V * 255., 0, 255.)))
     return img
 
   # Returns sparse matting laplacian

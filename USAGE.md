@@ -5,7 +5,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 ### Setup
 
-We only test our code in the following environment. 
+We only tested our code in the following environment. 
 - OS: Ubuntu 16.04
 - CUDA: 9.1
 - **Python 2 from Anaconda2**
