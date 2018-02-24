@@ -4,8 +4,8 @@ results/
 images/
 data/
 logs/
+examples
 .idea/
-dgx/scripts/
 notebooks/.ipynb_checkpoints/*
 *.tar.gz
 *.zip
