@@ -17,12 +17,13 @@ We only test our code in the following environment.
   - export LD_LIBRARY_PATH=${ANACONDA}/lib:${CUDA_PATH}/bin64:$LD_LIBRARY_PATH
   - export C_INCLUDE_PATH=${CUDA_PATH}/include
 - Install requirement
-  1. `sudo apt-get install -y axel imagemagick` (Only used for demo)
-  2. `conda install pytorch=0.3.0 torchvision cuda90 -y -c pytorch`
-  3. `conda install -y -c menpo opencv3`
-  4. `pip install scikit-umfpack`
-  5. `pip install cupy`
-  6. `pip install pynvrtc`
+  - `sudo apt-get install -y axel imagemagick` (Only used for demo)
+  - `conda install pytorch=0.3.0 torchvision cuda90 -y -c pytorch`
+  - `conda install -y -c menpo opencv3`
+  - `pip install scikit-umfpack`
+  - `pip install -U setuptools`
+  - `pip install cupy`
+  - `pip install pynvrtc`
 
 ### Download pretrained networks
 
