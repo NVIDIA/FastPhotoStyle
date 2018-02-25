@@ -3,6 +3,7 @@ Copyright (C) 2018 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 """
 
+from __future__ import print_function
 import argparse
 import os
 
@@ -12,7 +13,8 @@ from photo_wct import PhotoWCT
 import process_stylization
 
 parser = argparse.ArgumentParser(description='Photorealistic Image Stylization')
-parser.add_argument('--model', default='./PhotoWCTModels/photo_wct.pth', help='Path to the PhotoWCT model')
+parser.add_argument('--model', default='./PhotoWCTModels/photo_wct.pth',
+                    help='Path to the PhotoWCT model. These are provided by the PhotoWCT submodule, please use `git submodule update --init --recursive` to pull.')
 args = parser.parse_args()
 
 folder = 'examples'
