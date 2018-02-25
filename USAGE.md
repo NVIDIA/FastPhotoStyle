@@ -37,12 +37,12 @@ These models are extracted from Torch7 models and currently used in the project.
 
 - Pull them from the `PhotoWCTModels` submodule: `git submodule update --init --recursive`
 
-**Origin Torch7 models**
+**Original Torch7 models**
 
 - Download pretrained networks via the following [link](https://drive.google.com/open?id=1ENgQm9TgabE1R99zhNf5q6meBvX6WFuq).
 - Unzip and store the model files under `models`.
 
-`converter.py` shows how to convert Torth7 models to PyTorch models.
+`converter.py` shows how to convert Torch7 models to PyTorch models.
 
 ### Example 1: Transfer the style of a style photo to a content photo.
 - Create image and output folders and make sure nothing is inside the folders. `mkdir images && mkdir results`
