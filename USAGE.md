@@ -34,6 +34,13 @@ We only tested our code in the following environment.
 - Download pretrained networks via the following [link](https://drive.google.com/open?id=1ENgQm9TgabE1R99zhNf5q6meBvX6WFuq).
 - Unzip and store the model files under `models`.
 
+#### (Optional) Download script
+ - Automatically downloads pretrained networks and unzips them.
+ - Requires requests (`pip install requests`)
+```
+bash download_models.sh
+```
+
 ### Example 1: Transfer the style of a style photo to a content photo.
 - Create image and output folders and make sure nothing is inside the folders. `mkdir images && mkdir results`
 - Go to the image folder: `cd images`
