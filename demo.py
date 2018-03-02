@@ -19,7 +19,7 @@ parser.add_argument('--content_seg_path', default=[])
 parser.add_argument('--style_image_path', default='./images/style1.png')
 parser.add_argument('--style_seg_path', default=[])
 parser.add_argument('--output_image_path', default='./results/example1.png')
-parser.add_argument('--cuda', type=bool, default=True, help='Enable CUDA.')
+parser.add_argument('--cuda', type=int, default=1, help='Enable CUDA.')
 args = parser.parse_args()
 
 # Load model
@@ -30,7 +30,8 @@ except:
     print("Fail to load PhotoWCT models. PhotoWCT submodule not updated?")
     exit()
 
-p_wct.cuda(0)
+if args.cuda:
+    p_wct.cuda(0)
 
 process_stylization.stylization(
     p_wct=p_wct,
