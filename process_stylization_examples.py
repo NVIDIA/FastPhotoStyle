@@ -15,6 +15,7 @@ import process_stylization
 parser = argparse.ArgumentParser(description='Photorealistic Image Stylization')
 parser.add_argument('--model', default='./PhotoWCTModels/photo_wct.pth',
                     help='Path to the PhotoWCT model. These are provided by the PhotoWCT submodule, please use `git submodule update --init --recursive` to pull.')
+parser.add_argument('--cuda', type=bool, default=True, help='Enable CUDA.')
 args = parser.parse_args()
 
 folder = 'examples'
@@ -29,7 +30,6 @@ cont_img_list.sort()
 # Load model
 p_wct = PhotoWCT()
 p_wct.load_state_dict(torch.load(args.model))
-p_wct.cuda(0)
 
 for f in cont_img_list:
     print("Process " + f)
@@ -47,4 +47,5 @@ for f in cont_img_list:
         content_seg_path=content_seg_path,
         style_seg_path=style_seg_path,
         output_image_path=output_image_path,
+        cuda=args.cuda,
     )
