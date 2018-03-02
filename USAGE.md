@@ -39,8 +39,13 @@ These models are extracted from Torch7 models and currently used in the project.
 
 **Original Torch7 models**
 
+Manually download the model files.
 - Download pretrained networks via the following [link](https://drive.google.com/open?id=1ENgQm9TgabE1R99zhNf5q6meBvX6WFuq).
 - Unzip and store the model files under `models`.
+
+Automatically downloads pretrained networks and unzips them.
+- Requires requests (`pip install requests`)
+- `bash download_models.sh`
 
 `converter.py` shows how to convert Torch7 models to PyTorch models.
 
