@@ -163,7 +163,7 @@ class VGGEncoder(nn.Module):
         out = self.conv3_1(out)
         out = self.relu3_1(out)
         
-        if self.level < 3: return out, out2, out1
+        if self.level < 4: return out, out2, out1
         
         out3 = out
         
