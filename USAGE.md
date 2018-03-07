@@ -50,16 +50,16 @@ Automatically downloads pretrained networks and unzips them.
 `converter.py` shows how to convert Torch7 models to PyTorch models.
 
 ### Example 1: Transfer the style of a style photo to a content photo.
-- Create image and output folders and make sure nothing is inside the folders. `mkdir images && mkdir results`
-- Go to the image folder: `cd images`
-- Download content image 1: `axel -n 1 http://freebigpictures.com/wp-content/uploads/shady-forest.jpg --output=content1.png`
-- Download style image 1: `axel -n 1 https://vignette.wikia.nocookie.net/strangerthings8338/images/e/e0/Wiki-background.jpeg/revision/latest?cb=20170522192233 --output=style1.png`
-- These images are huge. We need to resize them first. Run
-  - `convert -resize 25% content1.png content1.png`
-  - `convert -resize 50% style1.png style1.png`
-- Go back to the root folder: `cd ..`
-- Test the photorealistic image stylization code `python demo.py`
-- You should see an output image like
+1. Create image and output folders and make sure nothing is inside the folders. `mkdir images && mkdir results`
+2. Go to the image folder: `cd images`
+3. Download content image 1: `axel -n 1 http://freebigpictures.com/wp-content/uploads/shady-forest.jpg --output=content1.png`
+4. Download style image 1: `axel -n 1 https://vignette.wikia.nocookie.net/strangerthings8338/images/e/e0/Wiki-background.jpeg/revision/latest?cb=20170522192233 --output=style1.png`
+5. These images are huge. We need to resize them first. Run
+    - `convert -resize 25% content1.png content1.png`
+    - `convert -resize 50% style1.png style1.png`
+6. Go back to the root folder: `cd ..`
+7. Test the photorealistic image stylization code `python demo.py`
+8. You should see an output image like
 
 ![](demo_result.png)
 
@@ -69,9 +69,9 @@ By default, our algorithm performs the global stylization. In order to give user
 
 #### Prepare label maps
 
-- Install the tool [labelme](https://github.com/wkentaro/labelme) and run the following command to start it: `labelme`
-- Start labeling regions (drawing polygons) in the content and style image. The corresponding regions (e.g., sky-to-sky) should have the same label.
-- The labeling result is saved in a ".json" file. By running the following command, you will get the `label.png` under `path/example_json`, which is the label map used in our code. `label.png` is a 1-channel image (usually looks totally black) consists of consecutive labels starting from 0.
+1. Install the tool [labelme](https://github.com/wkentaro/labelme) and run the following command to start it: `labelme`
+2. Start labeling regions (drawing polygons) in the content and style image. The corresponding regions (e.g., sky-to-sky) should have the same label.
+3. The labeling result is saved in a ".json" file. By running the following command, you will get the `label.png` under `path/example_json`, which is the label map used in our code. `label.png` is a 1-channel image (usually looks totally black) consists of consecutive labels starting from 0.
 
 ```
 labelme_json_to_dataset example.json -o path/example_json
@@ -105,4 +105,4 @@ We also provide a docker image for testing the code.
 
 ## Acknowledgement
 
-- We express gratitudes to the great work [DPST](https://www.cs.cornell.edu/~fujun/files/style-cvpr17/style-cvpr17.pdf) by Luan et al. and their [Torch](https://github.com/luanfujun/deep-photo-styletransfer) and [Tensorflow](https://github.com/LouieYang/deep-photo-styletransfer-tf) implementations.
+We express gratitudes to the great work [DPST](https://www.cs.cornell.edu/~fujun/files/style-cvpr17/style-cvpr17.pdf) by Luan et al. and their [Torch](https://github.com/luanfujun/deep-photo-styletransfer) and [Tensorflow](https://github.com/LouieYang/deep-photo-styletransfer-tf) implementations.
