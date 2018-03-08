@@ -31,15 +31,23 @@ We only tested our code in the following environment.
 
 ### Download pretrained networks
 
+**PyTorch models**
+
+These models are extracted from Torch7 models and currently used in the project.
+
+- Pull them from the `PhotoWCTModels` submodule: `git submodule update --init --recursive`
+
+**Original Torch7 models**
+
+Manually download the model files.
 - Download pretrained networks via the following [link](https://drive.google.com/open?id=1ENgQm9TgabE1R99zhNf5q6meBvX6WFuq).
 - Unzip and store the model files under `models`.
 
-#### (Optional) Download script
- - Automatically downloads pretrained networks and unzips them.
- - Requires requests (`pip install requests`)
-```
-bash download_models.sh
-```
+Automatically downloads pretrained networks and unzips them.
+- Requires requests (`pip install requests`)
+- `bash download_models.sh`
+
+`converter.py` shows how to convert Torch7 models to PyTorch models.
 
 ### Example 1: Transfer the style of a style photo to a content photo.
 - Create image and output folders and make sure nothing is inside the folders. `mkdir images && mkdir results`
@@ -88,11 +96,12 @@ Below is a 3-label transferring example (images and labels are from the [DPST](h
 
 We also provide a docker image for testing the code. 
 
-  1. Install nvidia-docker. Follow the instruction in the [NVIDIA-DOCKER README page](https://github.com/NVIDIA/nvidia-docker).
-  2. Build the docker image `docker build -t your-docker-image:v1.0 .`
-  3. Run an interactive session `docker run -v YOUR_PATH:YOUR_PATH --runtime=nvidia -i -t your-docker-image:v1.0 /bin/bash`
-  4. `cd YOUR_PATH`
-  5. `./demo.sh`
+  1. Install docker-ce. Follow the instruction in the [Docker page](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1)
+  2. Install nvidia-docker. Follow the instruction in the [NVIDIA-DOCKER README page](https://github.com/NVIDIA/nvidia-docker).
+  3. Build the docker image `docker build -t your-docker-image:v1.0 .`
+  4. Run an interactive session `docker run -v YOUR_PATH:YOUR_PATH --runtime=nvidia -i -t your-docker-image:v1.0 /bin/bash`
+  5. `cd YOUR_PATH`
+  6. `./demo.sh`
 
 ## Acknowledgement
 

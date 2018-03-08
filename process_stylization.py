@@ -32,7 +32,8 @@ class Timer:
         print(self.msg % (time.time() - self.start_time))
 
 
-def stylization(p_wct, content_image_path, style_image_path, content_seg_path, style_seg_path, output_image_path):
+def stylization(p_wct, content_image_path, style_image_path, content_seg_path, style_seg_path, output_image_path,
+                cuda):
     # Load image
     cont_img = Image.open(content_image_path).convert('RGB')
     styl_img = Image.open(style_image_path).convert('RGB')
@@ -45,8 +46,14 @@ def stylization(p_wct, content_image_path, style_image_path, content_seg_path, s
     
     cont_img = transforms.ToTensor()(cont_img).unsqueeze(0)
     styl_img = transforms.ToTensor()(styl_img).unsqueeze(0)
-    cont_img = Variable(cont_img.cuda(0), volatile=True)
-    styl_img = Variable(styl_img.cuda(0), volatile=True)
+    
+    if cuda:
+        cont_img = cont_img.cuda(0)
+        styl_img = styl_img.cuda(0)
+        p_wct.cuda(0)
+    
+    cont_img = Variable(cont_img, volatile=True)
+    styl_img = Variable(styl_img, volatile=True)
     
     cont_seg = np.asarray(cont_seg)
     styl_seg = np.asarray(styl_seg)
@@ -58,6 +65,10 @@ def stylization(p_wct, content_image_path, style_image_path, content_seg_path, s
     with Timer("Elapsed time in propagation: %f"):
         out_img = p_pro.process(output_image_path, content_image_path)
     out_img.save(output_image_path)
+    
+    if not cuda:
+        print("NotImplemented: The CPU version of smooth filter has not been implemented currently.")
+        return
     
     with Timer("Elapsed time in post processing: %f"):
         out_img = smooth_filter(output_image_path, content_image_path, f_radius=15, f_edge=1e-1)
