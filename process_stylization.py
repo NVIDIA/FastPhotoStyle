@@ -14,7 +14,6 @@ import torchvision.transforms as transforms
 import torchvision.utils as utils
 
 from photo_smooth import Propagator
-from smooth_filter import smooth_filter
 
 # Load Propagator
 p_pro = Propagator()
@@ -70,6 +69,7 @@ def stylization(p_wct, content_image_path, style_image_path, content_seg_path, s
         print("NotImplemented: The CPU version of smooth filter has not been implemented currently.")
         return
     
+    from smooth_filter import smooth_filter
     with Timer("Elapsed time in post processing: %f"):
         out_img = smooth_filter(output_image_path, content_image_path, f_radius=15, f_edge=1e-1)
     out_img.save(output_image_path)
