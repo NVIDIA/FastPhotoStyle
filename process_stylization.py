@@ -8,8 +8,10 @@ from __future__ import print_function
 import time
 
 import numpy as np
+import torch
 from PIL import Image
 from torch.autograd import Variable
+from torch.onnx import export
 import torchvision.transforms as transforms
 import torchvision.utils as utils
 
@@ -32,8 +34,7 @@ class Timer:
         print(self.msg % (time.time() - self.start_time))
 
 
-def stylization(p_wct, content_image_path, style_image_path, content_seg_path, style_seg_path, output_image_path,
-                cuda):
+def stylization(p_wct, content_image_path, style_image_path, content_seg_path, style_seg_path, output_image_path, cuda, args):
     # Load image
     cont_img = Image.open(content_image_path).convert('RGB')
     styl_img = Image.open(style_image_path).convert('RGB')
@@ -52,12 +53,16 @@ def stylization(p_wct, content_image_path, style_image_path, content_seg_path, s
         styl_img = styl_img.cuda(0)
         p_wct.cuda(0)
     
-    cont_img = Variable(cont_img, volatile=True)
-    styl_img = Variable(styl_img, volatile=True)
-    
-    cont_seg = np.asarray(cont_seg)
-    styl_seg = np.asarray(styl_seg)
-    
+    cont_img = Variable(cont_img, requires_grad=False)
+    styl_img = Variable(styl_img, requires_grad=False)
+    cont_seg = torch.FloatTensor(np.asarray(cont_seg))
+    styl_seg = torch.FloatTensor(np.asarray(styl_seg))
+
+    if args.export_onnx:
+        assert args.export_onnx.endswith(".onnx"), "Export model file should end with .onnx"
+        export(p_wct, [cont_img, styl_img, cont_seg, styl_seg],
+               f=args.export_onnx, verbose=args.verbose)
+        
     with Timer("Elapsed time in stylization: %f"):
         stylized_img = p_wct.transform(cont_img, styl_img, cont_seg, styl_seg)
     utils.save_image(stylized_img.data.cpu().float(), output_image_path, nrow=1)

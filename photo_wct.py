@@ -23,7 +23,7 @@ class PhotoWCT(nn.Module):
         self.d3 = VGGDecoder(3)
         self.e4 = VGGEncoder(4)
         self.d4 = VGGDecoder(4)
-    
+                
     def transform(self, cont_img, styl_img, cont_seg, styl_seg):
         self.__compute_label_info(cont_seg, styl_seg)
         
@@ -53,8 +53,15 @@ class PhotoWCT(nn.Module):
         csF1 = self.__feature_wct(cF1, sF1, cont_seg, styl_seg)
         Im1 = self.d1(csF1)
         return Im1
+        
+    def forward(self, args):
+        [cont_img, styl_img, cont_seg, styl_seg] = args
+        print (cont_img, styl_img, cont_seg, styl_seg)
+        self.transform(cont_img, styl_img, cont_seg, styl_seg)
     
     def __compute_label_info(self, cont_seg, styl_seg):
+        cont_seg=cont_seg.numpy()
+        styl_seg=styl_seg.numpy()
         if cont_seg.size == False or styl_seg.size == False:
             return
         max_label = np.max(cont_seg) + 1
@@ -69,6 +76,8 @@ class PhotoWCT(nn.Module):
             self.label_indicator[l] = is_valid(o_cont_mask[0].size, o_styl_mask[0].size)
     
     def __feature_wct(self, cont_feat, styl_feat, cont_seg, styl_seg):
+        cont_seg = cont_seg.numpy()
+        styl_seg = styl_seg.numpy()
         cont_c, cont_h, cont_w = cont_feat.size(0), cont_feat.size(1), cont_feat.size(2)
         styl_c, styl_h, styl_w = styl_feat.size(0), styl_feat.size(1), styl_feat.size(2)
         cont_feat_view = cont_feat.view(cont_c, -1).clone()

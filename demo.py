@@ -20,6 +20,13 @@ parser.add_argument('--style_image_path', default='./images/style1.png')
 parser.add_argument('--style_seg_path', default=[])
 parser.add_argument('--output_image_path', default='./results/example1.png')
 parser.add_argument('--cuda', type=int, default=1, help='Enable CUDA.')
+parser.add_argument("--export_onnx", type=str, help="export ONNX model to a given file")
+parser.add_argument("--engine", type=str, help="run serialized TRT engine")
+parser.add_argument("--onnx", type=str, help="run ONNX model via TRT")
+parser.add_argument('--verbose', action='store_true', default = False, help='toggles verbose')
+parser.add_argument("-d", "--data_type", default=32, type=int, choices=[8, 16, 32], help="Supported data type i.e. 8, 16, 32 bit")
+    
+    
 args = parser.parse_args()
 
 # Load model
@@ -32,7 +39,7 @@ except:
 
 if args.cuda:
     p_wct.cuda(0)
-
+    
 process_stylization.stylization(
     p_wct=p_wct,
     content_image_path=args.content_image_path,
@@ -41,4 +48,5 @@ process_stylization.stylization(
     style_seg_path=args.style_seg_path,
     output_image_path=args.output_image_path,
     cuda=args.cuda,
+    args=args
 )
