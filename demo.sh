@@ -7,4 +7,4 @@ axel -n 1 https://vignette.wikia.nocookie.net/strangerthings8338/images/e/e0/Wik
 convert -resize 25% content1.png content1.png;
 convert -resize 50% style1.png style1.png;
 cd ..;
-python demo.py;
+python demo.py $@; 
