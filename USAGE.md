@@ -1,5 +1,6 @@
 [![License CC BY-NC-SA 4.0](https://img.shields.io/badge/license-CC4.0-blue.svg)](https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/LICENSE.md)
 ![Python 2.7](https://img.shields.io/badge/python-2.7-green.svg)
+![Python 3.6](https://img.shields.io/badge/python-3.6-green.svg)
 
 ## CODE USAGE
 
@@ -7,15 +8,14 @@
 Copyright (C) 2018 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 
-
 ### Setup
 
-We only tested our code in the following environment. 
+We tested our code in the following environment. 
 - OS: Ubuntu 16.04
 - CUDA: 9.1
-- **Python 2 from Anaconda2**
-- pytorch 0.3.0
-- Setup environment variables. You might already have them set up properly.
+- Python 3.6 under Anaconda3
+- pytorch 0.4.0
+- Setup environment variables.
   - export ANACONDA=PATH-TO-YOUR-ANACONDA-LIBRARY
   - export CUDA_PATH=/usr/local/cuda
   - export PATH=${ANACONDA}/bin:${CUDA_PATH}/bin:$PATH
@@ -23,7 +23,7 @@ We only tested our code in the following environment.
   - export C_INCLUDE_PATH=${CUDA_PATH}/include
 - Install requirement
   - `sudo apt-get install -y axel imagemagick` (Only used for demo)
-  - `conda install pytorch=0.3.0 torchvision cuda90 -y -c pytorch`
+  - `conda install pytorch=0.4.0 torchvision cuda91 -y -c pytorch`
   - `pip install scikit-umfpack`
   - `pip install -U setuptools`
   - `pip install cupy`
