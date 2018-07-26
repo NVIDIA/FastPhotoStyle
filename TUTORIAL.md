@@ -178,7 +178,7 @@ To setup up the segmentation network, do the following steps:
 
 | Input Style Photo | Input Content Photo | Output Stylization Result |
 |-------------------|---------------------|---------------------------|
-|<img src="https://nerdist.com/wp-content/uploads/2017/11/Stranger_Things_S2_news_Images_V03-1024x481.jpg" height="200" title="content 3"> | <img src="https://pre00.deviantart.net/f1a6/th/pre/i/2010/019/0/e/country_road_hdr_by_mirre89.jpg" height="200" title="content 3"> |<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_example1.png" height="200" title="demo_result_example3.png"> |
+|<img src="https://nerdist.com/wp-content/uploads/2017/11/Stranger_Things_S2_news_Images_V03-1024x481.jpg" height="200" title="content 3"> | <img src="https://pre00.deviantart.net/f1a6/th/pre/i/2010/019/0/e/country_road_hdr_by_mirre89.jpg" height="200" title="content 3"> |<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_example3.png" height="200" title="demo_result_example3.png"> |
 
 - We can check out the segmentation results in the `results` folder.
 
