@@ -76,7 +76,7 @@ You can simply type `./demo_example1.sh` to run the demo or follow the steps bel
 
 | Input Style Photo | Input Content Photo | Output Stylization Result |
 |-------------------|---------------------|---------------------------|
-|<img src="https://vignette.wikia.nocookie.net/strangerthings8338/images/e/e0/Wiki-background.jpeg" height="300" title="content 1"> | <img src="http://freebigpictures.com/wp-content/uploads/shady-forest.jpg" height="300" title="content 1"> |<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_example1.png" height="300" title="demo_result_example1.png"> |
+|<img src="https://vignette.wikia.nocookie.net/strangerthings8338/images/e/e0/Wiki-background.jpeg" height="200" title="content 1"> | <img src="http://freebigpictures.com/wp-content/uploads/shady-forest.jpg" height="200" title="content 1"> |<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_example1.png" height="200" title="demo_result_example1.png"> |
 
 - As shown in the output messages, the computational bottleneck of FastPhotoStyle is the propagation step (the photorealistic smoothing step). We find that we can make this step much faster by using the guided image filtering algorithm as an approximate. To run the fast version of the demo, you can simply type `./demo_example1_fast.sh` or run.
 - `python demo.py --fast --output_image_path results/example1_fast.png`
@@ -178,13 +178,13 @@ To setup up the segmentation network, do the following steps:
 
 | Input Style Photo | Input Content Photo | Output Stylization Result |
 |-------------------|---------------------|---------------------------|
-|<img src="https://nerdist.com/wp-content/uploads/2017/11/Stranger_Things_S2_news_Images_V03-1024x481.jpg" height="300" title="content 3"> | <img src="https://pre00.deviantart.net/f1a6/th/pre/i/2010/019/0/e/country_road_hdr_by_mirre89.jpg" height="300" title="content 3"> |<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_example1.png" height="300" title="demo_result_example3.png"> |
+|<img src="https://nerdist.com/wp-content/uploads/2017/11/Stranger_Things_S2_news_Images_V03-1024x481.jpg" height="200" title="content 3"> | <img src="https://pre00.deviantart.net/f1a6/th/pre/i/2010/019/0/e/country_road_hdr_by_mirre89.jpg" height="200" title="content 3"> |<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_example1.png" height="200" title="demo_result_example3.png"> |
 
 - We can check out the segmentation results in the `results` folder.
 
 | Segmentation of the Style Photo | Segmentation of the Content Photo |
 |---------------------------------|-----------------------------------|
-|<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_style3_seg.pgm.visualization.jpg" height="300" title="demo_result_style3_seg.png"> | <img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_content3_seg.pgm.visualization.jpg" height="300" title="demo_result_content3_seg.png"> |
+|<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_style3_seg.pgm.visualization.jpg" height="200" title="demo_result_style3_seg.png"> | <img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_content3_seg.pgm.visualization.jpg" height="200" title="demo_result_content3_seg.png"> |
 
 
 ### Use docker image
