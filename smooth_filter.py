@@ -320,6 +320,7 @@ src = '''
 		return ;
 	}
 	'''
+
 import torch
 import numpy as np
 from PIL import Image
@@ -329,66 +330,74 @@ from collections import namedtuple
 
 
 def smooth_local_affine(output_cpu, input_cpu, epsilon, patch, h, w, f_r, f_e):
-  program = Program(src.encode('utf-8'), 'best_local_affine_kernel.cu'.encode('utf-8'))
-  ptx = program.compile(['-I/usr/local/cuda-9.1/include'.encode('utf-8')])
-  m = function.Module()
-  m.load(bytes(ptx.encode()))
+    program = Program(src.encode('utf-8'), 'best_local_affine_kernel.cu'.encode('utf-8'))
+    ptx = program.compile(['-I/usr/local/cuda-9.1/include'.encode('utf-8')])
+    m = function.Module()
+    m.load(bytes(ptx.encode()))
 
-  _reconstruction_best_kernel = m.get_function('reconstruction_best_kernel')
-  _bilateral_smooth_kernel = m.get_function('bilateral_smooth_kernel')
-  _best_local_affine_kernel = m.get_function('best_local_affine_kernel')
-  Stream = namedtuple('Stream', ['ptr'])
-  s = Stream(ptr=torch.cuda.current_stream().cuda_stream)
+    _reconstruction_best_kernel = m.get_function('reconstruction_best_kernel')
+    _bilateral_smooth_kernel = m.get_function('bilateral_smooth_kernel')
+    _best_local_affine_kernel = m.get_function('best_local_affine_kernel')
+    Stream = namedtuple('Stream', ['ptr'])
+    s = Stream(ptr=torch.cuda.current_stream().cuda_stream)
 
-  filter_radius = f_r
-  sigma1 = filter_radius / 3
-  sigma2 = f_e
-  radius = (patch - 1) / 2
+    filter_radius = f_r
+    sigma1 = filter_radius / 3
+    sigma2 = f_e
+    radius = (patch - 1) / 2
 
-  filtered_best_output = torch.zeros(np.shape(input_cpu)).cuda()
-  affine_model =  torch.zeros((h * w, 12)).cuda()
-  filtered_affine_model =torch.zeros((h * w, 12)).cuda()
+    filtered_best_output = torch.zeros(np.shape(input_cpu)).cuda()
+    affine_model =    torch.zeros((h * w, 12)).cuda()
+    filtered_affine_model =torch.zeros((h * w, 12)).cuda()
 
-  input_ = torch.from_numpy(input_cpu).cuda()
-  output_ = torch.from_numpy(output_cpu).cuda()
-  _best_local_affine_kernel(
-    grid=(int((h * w) / 256 + 1), 1),
-    block=(256, 1, 1),
-    args=[output_.data_ptr(), input_.data_ptr(), affine_model.data_ptr(),
-       np.int32(h), np.int32(w), np.float32(epsilon), np.int32(radius)], stream=s
-   )
+    input_ = torch.from_numpy(input_cpu).cuda()
+    output_ = torch.from_numpy(output_cpu).cuda()
+    _best_local_affine_kernel(
+        grid=(int((h * w) / 256 + 1), 1),
+        block=(256, 1, 1),
+        args=[output_.data_ptr(), input_.data_ptr(), affine_model.data_ptr(),
+             np.int32(h), np.int32(w), np.float32(epsilon), np.int32(radius)], stream=s
+     )
 
-  _bilateral_smooth_kernel(
-    grid=(int((h * w) / 256 + 1), 1),
-    block=(256, 1, 1),
-    args=[affine_model.data_ptr(), filtered_affine_model.data_ptr(), input_.data_ptr(), np.int32(h), np.int32(w), np.int32(f_r), np.float32(sigma1), np.float32(sigma2)], stream=s
-  )
+    _bilateral_smooth_kernel(
+        grid=(int((h * w) / 256 + 1), 1),
+        block=(256, 1, 1),
+        args=[affine_model.data_ptr(), filtered_affine_model.data_ptr(), input_.data_ptr(), np.int32(h), np.int32(w), np.int32(f_r), np.float32(sigma1), np.float32(sigma2)], stream=s
+    )
 
-  _reconstruction_best_kernel(
-    grid=(int((h * w) / 256 + 1), 1),
-    block=(256, 1, 1),
-    args=[input_.data_ptr(), filtered_affine_model.data_ptr(), filtered_best_output.data_ptr(),
-    np.int32(h), np.int32(w)], stream=s
-  )
-  numpy_filtered_best_output = filtered_best_output.cpu().numpy()
-  return numpy_filtered_best_output
+    _reconstruction_best_kernel(
+        grid=(int((h * w) / 256 + 1), 1),
+        block=(256, 1, 1),
+        args=[input_.data_ptr(), filtered_affine_model.data_ptr(), filtered_best_output.data_ptr(),
+        np.int32(h), np.int32(w)], stream=s
+    )
+    numpy_filtered_best_output = filtered_best_output.cpu().numpy()
+    return numpy_filtered_best_output
 
 
-def smooth_filter(init_img_name, content_img_name, f_radius=15,f_edge=1e-1):
-  best_image_bgr = np.array(Image.open(init_img_name).convert("RGB"), dtype=np.float32)
-  bW, bH, bC = best_image_bgr.shape
-  best_image_bgr = best_image_bgr[:, :, ::-1]
-  best_image_bgr = best_image_bgr.transpose((2, 0, 1))
+def smooth_filter(initImg, contentImg, f_radius=15,f_edge=1e-1):
+    '''
+    :param initImg: intermediate output. Either image path or PIL Image
+    :param contentImg: content image output. Either path or PIL Image
+    :return: stylized output image. PIL Image
+    '''
+    if type(initImg) == str:
+        initImg = Image.open(initImg).convert("RGB")
+    best_image_bgr = np.array(initImg, dtype=np.float32)
+    bW, bH, bC = best_image_bgr.shape
+    best_image_bgr = best_image_bgr[:, :, ::-1]
+    best_image_bgr = best_image_bgr.transpose((2, 0, 1))
 
-  content_input = Image.open(content_img_name).convert("RGB")
-  content_input = content_input.resize((bH,bW))
-  content_input = np.array(content_input, dtype=np.float32)
-  content_input = content_input[:, :, ::-1]
-  content_input = content_input.transpose((2, 0, 1))
-  input_ = np.ascontiguousarray(content_input, dtype=np.float32) / 255.
-  _, H, W = np.shape(input_)
-  output_ = np.ascontiguousarray(best_image_bgr, dtype=np.float32) / 255.
-  best_ = smooth_local_affine(output_, input_, 1e-7, 3, H, W, f_radius, f_edge)
-  best_ = best_.transpose(1, 2, 0)
-  result = Image.fromarray(np.uint8(np.clip(best_ * 255., 0, 255.)))
-  return result
+    if type(contentImg) == str:
+        contentImg = Image.open(contentImg).convert("RGB")
+    content_input = contentImg.resize((bH,bW))
+    content_input = np.array(content_input, dtype=np.float32)
+    content_input = content_input[:, :, ::-1]
+    content_input = content_input.transpose((2, 0, 1))
+    input_ = np.ascontiguousarray(content_input, dtype=np.float32) / 255.
+    _, H, W = np.shape(input_)
+    output_ = np.ascontiguousarray(best_image_bgr, dtype=np.float32) / 255.
+    best_ = smooth_local_affine(output_, input_, 1e-7, 3, H, W, f_radius, f_edge)
+    best_ = best_.transpose(1, 2, 0)
+    result = Image.fromarray(np.uint8(np.clip(best_ * 255., 0, 255.)))
+    return result
