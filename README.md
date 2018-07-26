@@ -11,7 +11,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 <img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/teaser.png" width="800" title="Teaser results"> 
 
 
-### Whats' new
+### What's new
  
  | Date     | News |
  |----------|--------------|
@@ -24,13 +24,15 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 
 Given a content photo and a style photo, the code can transfer the style of the style photo to the content photo. The details of the algorithm behind the code is documented in our arxiv paper. Please cite the paper if this code repository is used in your publications.
 
+"[A Closed-form Solution to Photorealistic Image Stylization](https://arxiv.org/abs/1802.06474)" 
+
 [Yijun Li (UC Merced)](https://sites.google.com/site/yijunlimaverick/), 
 [Ming-Yu Liu (NVIDIA)](http://mingyuliu.net/), 
 [Xueting Li (UC Merced)](https://sunshineatnoon.github.io/), 
 [Ming-Hsuan Yang (NVIDIA, UC Merced)](http://faculty.ucmerced.edu/mhyang/), 
 [Jan Kautz (NVIDIA)](http://jankautz.com/) 
-"[A Closed-form Solution to Photorealistic Image Stylization](https://arxiv.org/abs/1802.06474)" 
-ECCV 2018, arXiv preprint arXiv:1802.06474
+
+European Conference on Computer Vision (ECCV), 2018
 
 
 
