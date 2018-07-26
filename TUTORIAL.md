@@ -16,6 +16,8 @@ The FastPhotoStyle algorithm is in the category of photorealistic style transfer
 
 FastPhotoStyle takes two images as input where one is the content image and the other is the style image. Its goal is to transfer the style of the style photo to the content photo for creating a stylized image as shown below.
 
+<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_with_segmentation.gif" width="800" title="GIF"> 
+
 <img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/teaser.png" width="800" title="Teaser results"> 
 
 FastPhotoStyle divides the photorealistic stylization process into two steps. 
