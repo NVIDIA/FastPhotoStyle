@@ -102,6 +102,9 @@ In this example, we show how to manually create segmentation masks of content an
 
 - Install the tool [labelme](https://github.com/wkentaro/labelme) and run the following command to start it: `labelme`
 - Start labeling regions (drawing polygons) in the content and style image. The corresponding regions (e.g., sky-to-sky) should have the same label.
+
+<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_mask_poly.png" width="800" title="demo_mask_poly"> 
+
 - The labeling result is saved in a ".json" file. By running the following command, you will get the `label.png` under `path/example_json`, which is the label map used in our code. `label.png` is a 1-channel image (usually looks totally black) consists of consecutive labels starting from 0.
 
 ```
