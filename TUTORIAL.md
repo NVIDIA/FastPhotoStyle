@@ -101,7 +101,11 @@ In this example, we show how to manually create segmentation masks of content an
 ##### Prepare label maps
 
 - Install the tool [labelme](https://github.com/wkentaro/labelme) and run the following command to start it: `labelme`
-- Load the target image and start labeling regions (drawing polygons) in the content and style image. The corresponding regions (e.g., sky-to-sky) should have the same label. All unlabled pixels will be automatically labeled as `0` (the background). Finally, save the labeling result.
+- Please refer to [labelme](https://github.com/wkentaro/labelme) for details about how to use this great UI. Basically, do the following steps:
+  - Click `Open` and load the target image (content or style)
+  - Click `Create Polygons` and start drawing polygons in content or style image. Note that the corresponding regions (e.g., sky-to-sky) should have the same label. All unlabled pixels will be automatically labeled as `0` (the background). 
+  - Optional: Click `Edit Polygons` and polish the mask.
+  - Save the labeling result.
 
 <img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_mask_poly.png" width="800" title="demo_mask_poly"> 
 
