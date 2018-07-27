@@ -103,7 +103,7 @@ In this example, we show how to manually create segmentation masks of content an
 - Install the tool [labelme](https://github.com/wkentaro/labelme) and run the following command to start it: `labelme`
 - Please refer to [labelme](https://github.com/wkentaro/labelme) for details about how to use this great UI. Basically, do the following steps:
   - Click `Open` and load the target image (content or style)
-  - Click `Create Polygons` and start drawing polygons in content or style image. Note that the corresponding regions (e.g., sky-to-sky) should have the same label. All unlabled pixels will be automatically labeled as `0` (the background). 
+  - Click `Create Polygons` and start drawing polygons in content or style image. Note that the corresponding regions (e.g., sky-to-sky) should have the same label. All unlabeled pixels will be automatically labeled as `0`. 
   - Optional: Click `Edit Polygons` and polish the mask.
   - Save the labeling result.
 
