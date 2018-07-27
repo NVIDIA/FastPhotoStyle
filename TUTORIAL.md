@@ -57,7 +57,7 @@ In the 3rd example, we will show how to use a pretrained segmetnation network to
 #### Example 1: Transfer style of a style photo to a content photo without using segmentation masks.
 
 You can simply type `./demo_example1.sh` to run the demo or follow the steps below.
-- Create image and output folders and make sure nothing is inside the folders. `mkdir images && mkdir results`
+- Create image and output folders and make sure nothing is inside the folders: `mkdir images && mkdir results`
 - Go to the image folder: `cd images`
 - Download content image 1: `axel -n 1 http://freebigpictures.com/wp-content/uploads/shady-forest.jpg --output=content1.png`
 - Download style image 1: `axel -n 1 https://vignette.wikia.nocookie.net/strangerthings8338/images/e/e0/Wiki-background.jpeg/revision/latest?cb=20170522192233 --output=style1.png`
@@ -95,8 +95,8 @@ You can simply type `./demo_example1.sh` to run the demo or follow the steps bel
 #### Example 2: Transfer style of a style photo to a content photo with manually generated semantic label maps.
 
 When segmentation masks of content and style photos are available, FastPhotoStyle can utilize content–style 
-correspondences obtained by matching the semantic labels in the segmentation masks for generating better stylization effects.  
-In this example, we should how to manually create segmentation masks of content and style photos and use them for photorealistic style transfer.  
+correspondences obtained by matching the semantic labels in the segmentation masks for generating better stylization effects. 
+In this example, we show how to manually create segmentation masks of content and style photos and use them for photorealistic style transfer.  
 
 ##### Prepare label maps
 
