@@ -95,8 +95,8 @@ You can simply type `./demo_example1.sh` to run the demo or follow the steps bel
 #### Example 2: Transfer style of a style photo to a content photo with manually generated semantic label maps.
 
 When segmentation masks of content and style photos are available, FastPhotoStyle can utilize content–style 
-correspondences obtained by matching the semantic labels in the segmentation masks for generating better stylization effects.  
-In this example, we should how to manually create segmentation masks of content and style photos and use them for photorealistic style transfer.  
+correspondences obtained by matching the semantic labels in the segmentation masks for generating better stylization effects. 
+In this example, we show how to manually create segmentation masks of content and style photos and use them for photorealistic style transfer.  
 
 ##### Prepare label maps
 
