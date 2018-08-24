@@ -16,9 +16,9 @@ The FastPhotoStyle algorithm is in the category of photorealistic style transfer
 
 FastPhotoStyle takes two images as input where one is the content image and the other is the style image. Its goal is to transfer the style of the style photo to the content photo for creating a stylized image as shown below.
 
-<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_with_segmentation.gif" width="800" title="GIF"> 
+<img src="imgs/demo_with_segmentation.gif" width="800" title="GIF"> 
 
-<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/teaser.png" width="800" title="Teaser results"> 
+<img src="imgs/teaser.png" width="800" title="Teaser results"> 
 
 FastPhotoStyle divides the photorealistic stylization process into two steps. 
   1. **PhotoWCT:** Generate a stylized image with visible distortions by applying a whitening and coloring transform to the deep features extracted from the content and style images. 
@@ -56,7 +56,7 @@ In the 3rd example, we will show how to use a pretrained segmetnation network to
 
 #### Example 1: Transfer style of a style photo to a content photo without using segmentation masks.
 
-You can simply type `./demo_example1.sh` to run the demo or follow the steps below.
+You can simply type `./demo_scripts/demo_example1.sh` to run the demo or follow the steps below.
 - Create image and output folders and make sure nothing is inside the folders: `mkdir images && mkdir results`
 - Go to the image folder: `cd images`
 - Download content image 1: `axel -n 1 http://freebigpictures.com/wp-content/uploads/shady-forest.jpg --output=content1.png`
@@ -78,9 +78,9 @@ You can simply type `./demo_example1.sh` to run the demo or follow the steps bel
 
 | Input Style Photo | Input Content Photo | Output Stylization Result |
 |-------------------|---------------------|---------------------------|
-|<img src="https://vignette.wikia.nocookie.net/strangerthings8338/images/e/e0/Wiki-background.jpeg" height="200" title="content 1"> | <img src="http://freebigpictures.com/wp-content/uploads/shady-forest.jpg" height="200" title="content 1"> |<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_example1.png" height="200" title="demo_result_example1.png"> |
+|<img src="https://vignette.wikia.nocookie.net/strangerthings8338/images/e/e0/Wiki-background.jpeg" height="200" title="content 1"> | <img src="http://freebigpictures.com/wp-content/uploads/shady-forest.jpg" height="200" title="content 1"> |<img src="imgs/demo_result_example1.png" height="200" title="demo_result_example1.png"> |
 
-- As shown in the output messages, the computational bottleneck of FastPhotoStyle is the propagation step (the photorealistic smoothing step). We find that we can make this step much faster by using the guided image filtering algorithm as an approximate. To run the fast version of the demo, you can simply type `./demo_example1_fast.sh` or run.
+- As shown in the output messages, the computational bottleneck of FastPhotoStyle is the propagation step (the photorealistic smoothing step). We find that we can make this step much faster by using the guided image filtering algorithm as an approximate. To run the fast version of the demo, you can simply type `./demo_scripts/demo_example1_fast.sh` or run.
 - `python demo.py --fast --output_image_path results/example1_fast.png`
 - You should see output messages like
 - ```
@@ -107,7 +107,7 @@ In this example, we show how to manually create segmentation masks of content an
   - Optional: Click `Edit Polygons` and polish the mask.
   - Save the labeling result.
 
-<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_mask_poly.png" width="800" title="demo_mask_poly"> 
+<img src="imgs/demo_mask_poly.png" width="800" title="demo_mask_poly"> 
 
 - The labeling result is saved in a ".json" file. By running the following command, you will get the `label.png` under `path/example_json`, which is the label map used in our code. `label.png` is a 1-channel image (usually looks totally black) consists of consecutive labels starting from 0.
 
@@ -128,7 +128,7 @@ python demo.py \
 
 Below is a 3-label transferring example (images and labels are from the [DPST](https://github.com/luanfujun/deep-photo-styletransfer) work by Luan et al.):
 
-![](demo_result_example2.png)
+![](imgs/demo_result_example2.png)
 
 #### Example 3: Transfer the style of a style photo to a content photo with automatically generated semantic label maps.
 
@@ -161,7 +161,7 @@ To setup up the segmentation network, do the following steps:
   - Go back to the root folder `cd ..`
 
 - Now, we are ready to use the segmentation network trained on the ADE20K for automatically generating the segmentation mask. 
-- To run the fast version of the demo, you can simply type `./demo_example3.sh` or run.
+- To run the fast version of the demo, you can simply type `./demo_scripts/demo_example3.sh` or run.
 - Create image and output folders and make sure nothing is inside the folders. `mkdir images && mkdir results`
 - Go to the image folder: `cd images`
 - Download content image 3: `axel -n 1 https://pre00.deviantart.net/f1a6/th/pre/i/2010/019/0/e/country_road_hdr_by_mirre89.jpg --output=content3.png`
@@ -187,13 +187,13 @@ To setup up the segmentation network, do the following steps:
 
 | Input Style Photo | Input Content Photo | Output Stylization Result |
 |-------------------|---------------------|---------------------------|
-|<img src="https://nerdist.com/wp-content/uploads/2017/11/Stranger_Things_S2_news_Images_V03-1024x481.jpg" height="200" title="content 3"> | <img src="https://pre00.deviantart.net/f1a6/th/pre/i/2010/019/0/e/country_road_hdr_by_mirre89.jpg" height="200" title="content 3"> |<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_example3.png" height="200" title="demo_result_example3.png"> |
+|<img src="https://nerdist.com/wp-content/uploads/2017/11/Stranger_Things_S2_news_Images_V03-1024x481.jpg" height="200" title="content 3"> | <img src="https://pre00.deviantart.net/f1a6/th/pre/i/2010/019/0/e/country_road_hdr_by_mirre89.jpg" height="200" title="content 3"> |<img src="imgs/demo_result_example3.png" height="200" title="demo_result_example3.png"> |
 
 - We can check out the segmentation results in the `results` folder.
 
 | Segmentation of the Style Photo | Segmentation of the Content Photo |
 |---------------------------------|-----------------------------------|
-|<img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_style3_seg.pgm.visualization.jpg" height="200" title="demo_result_style3_seg.png"> | <img src="https://raw.githubusercontent.com/NVIDIA/FastPhotoStyle/master/demo_result_content3_seg.pgm.visualization.jpg" height="200" title="demo_result_content3_seg.png"> |
+|<img src="imgs/demo_result_style3_seg.pgm.visualization.jpg" height="200" title="demo_result_style3_seg.png"> | <img src="imgs/demo_result_content3_seg.pgm.visualization.jpg" height="200" title="demo_result_content3_seg.png"> |
 
 
 ### Use docker image
@@ -205,7 +205,7 @@ We provide a docker image for testing the code.
   3. Build the docker image `docker build -t your-docker-image:v1.0 .`
   4. Run an interactive session `docker run -v YOUR_PATH:YOUR_PATH --runtime=nvidia -i -t your-docker-image:v1.0 /bin/bash`
   5. `cd YOUR_PATH`
-  6. `./demo_example1.sh`
+  6. `./demo_scripts/demo_example1.sh`
 
 ## Acknowledgement
 
