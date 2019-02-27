@@ -62,6 +62,9 @@ class Propagator(nn.Module):
         return img
 
     # Returns sparse matting laplacian
+    # The implementation of the function is heavily borrowed from
+    # https://github.com/MarcoForte/closed-form-matting/blob/master/closed_form_matting.py
+    # We thank Marco Forte for sharing his code.
     def __compute_laplacian(self, img, eps=10**(-7), win_rad=1):
             win_size = (win_rad*2+1)**2
             h, w, d = img.shape
