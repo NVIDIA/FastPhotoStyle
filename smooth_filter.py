@@ -2,8 +2,20 @@
 Copyright (C) 2018 NVIDIA Corporation.  All rights reserved.
 Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode).
 """
-src = '''
-	#include "/usr/local/cuda/include/math_functions.h"
+
+import os
+import torch
+import numpy as np
+from PIL import Image
+from cupy.cuda import function
+from pynvrtc.compiler import Program
+from collections import namedtuple
+
+include_base = os.environ['C_INCLUDE_PATH']
+math_functions = os.path.join(include_base, 'math_functions.h')
+
+src = f"#include \"{math_functions}\""
+src = src + '''
 	#define TB 256
 	#define EPS 1e-7
 
@@ -320,14 +332,6 @@ src = '''
 		return ;
 	}
 	'''
-
-import torch
-import numpy as np
-from PIL import Image
-from cupy.cuda import function
-from pynvrtc.compiler import Program
-from collections import namedtuple
-
 
 def smooth_local_affine(output_cpu, input_cpu, epsilon, patch, h, w, f_r, f_e):
     # program = Program(src.encode('utf-8'), 'best_local_affine_kernel.cu'.encode('utf-8'))
