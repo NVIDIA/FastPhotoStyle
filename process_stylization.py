@@ -6,6 +6,7 @@ from __future__ import print_function
 import time
 import numpy as np
 from PIL import Image
+import tifffile
 from torch.autograd import Variable
 import torchvision.transforms as transforms
 import torchvision.utils as utils
@@ -59,10 +60,16 @@ def memory_limit_image_resize(cont_img):
 
 def stylization(stylization_module, smoothing_module, content_image_path, style_image_path, content_seg_path, style_seg_path, output_image_path,
                 cuda, save_intermediate, no_post, cont_seg_remapping=None, styl_seg_remapping=None):
+
+    if content_image_path.split('.')[-1] == 'tif' or content_image_path.split('.')[-1] == 'tiff':
+        img_loader = lambda x: Image.fromarray(tifffile.imread(x))
+    else:
+        img_loader = Image.open
+
     # Load image
     with torch.no_grad():
-        cont_img = Image.open(content_image_path).convert('RGB')
-        styl_img = Image.open(style_image_path).convert('RGB')
+        cont_img = img_loader(content_image_path).convert('RGB')
+        styl_img = img_loader(style_image_path).convert('RGB')
 
         new_cw, new_ch = memory_limit_image_resize(cont_img)
         new_sw, new_sh = memory_limit_image_resize(styl_img)
@@ -70,10 +77,10 @@ def stylization(stylization_module, smoothing_module, content_image_path, style_
         cw = cont_pilimg.width
         ch = cont_pilimg.height
         try:
-            cont_seg = Image.open(content_seg_path)
-            styl_seg = Image.open(style_seg_path)
-            cont_seg.resize((new_cw,new_ch),Image.NEAREST)
-            styl_seg.resize((new_sw,new_sh),Image.NEAREST)
+            cont_seg = img_loader(content_seg_path)
+            styl_seg = img_loader(style_seg_path)
+            cont_seg.resize((new_cw,new_ch), Image.NEAREST)
+            styl_seg.resize((new_sw,new_sh), Image.NEAREST)
 
         except:
             cont_seg = []

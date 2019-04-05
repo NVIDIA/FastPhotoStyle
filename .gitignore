@@ -2,6 +2,7 @@ segmentation/
 outputs/
 models/
 results/
+dataset/images/
 images/
 data/
 logs/
