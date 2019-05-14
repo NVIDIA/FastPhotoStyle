@@ -33,3 +33,5 @@ def save_response_content(response, destination):
 file_id = '1ENgQm9TgabE1R99zhNf5q6meBvX6WFuq'
 destination = './models.zip'
 download_file_from_google_drive(file_id, destination)
+
+# Directly download url: https://drive.google.com/open?id=1ENgQm9TgabE1R99zhNf5q6meBvX6WFuq
