@@ -128,8 +128,13 @@ class PhotoWCT(nn.Module):
         iden = torch.eye(cFSize[0])  # .double()
         if self.is_cuda:
             iden = iden.cuda()
-        
-        contentConv = torch.mm(cont_feat, cont_feat.t()).div(cFSize[1] - 1) + iden
+            
+        #To avoid division by zero
+        small_num = 0.00001
+        cFdivisor = cFSize[1] - 1.
+        if cFdivisor == 0.:
+            cFdivisor = small_num
+        contentConv = torch.mm(cont_feat, cont_feat.t()).div(cFdivisor) + iden
         # del iden
         c_u, c_e, c_v = torch.svd(contentConv, some=False)
         # c_e2, c_v = torch.eig(contentConv, True)
@@ -144,7 +149,12 @@ class PhotoWCT(nn.Module):
         sFSize = styl_feat.size()
         s_mean = torch.mean(styl_feat, 1)
         styl_feat = styl_feat - s_mean.unsqueeze(1).expand_as(styl_feat)
-        styleConv = torch.mm(styl_feat, styl_feat.t()).div(sFSize[1] - 1)
+        #To avoid division by zero
+        sFdivisor = sFSize[1] - 1.
+        if sFdivisor == 0.:
+            sFdivisor = small_num
+            
+        styleConv = torch.mm(styl_feat, styl_feat.t()).div(sFdivisor)
         s_u, s_e, s_v = torch.svd(styleConv, some=False)
         
         k_s = sFSize[0]
