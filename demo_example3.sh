@@ -1,3 +1,12 @@
+# The model paths are coming from the demo defined here:
+# https://github.com/mingyuliutw/semantic-segmentation-pytorch
+git submodule update --init --recursive
+
+pushd segmentation
+echo -e "\033[33m[WARN]\033[0m Segmentation repo might have dependency on the older version of Pytorch"
+./demo_test.sh
+popd
+
 mkdir images -p && mkdir results -p;
 rm images/content3.png -rf;
 rm images/style3.png -rf;

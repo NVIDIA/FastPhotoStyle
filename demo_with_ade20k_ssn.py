@@ -13,7 +13,8 @@ from segmentation.dataset import round2nearest_multiple
 from segmentation.models import ModelBuilder, SegmentationModule
 from lib.nn import user_scattered_collate, async_copy_to
 from lib.utils import as_numpy, mark_volatile
-from scipy.misc import imread, imresize
+# from scipy.misc import imread, imresize
+from imageio import imread
 import cv2
 from torchvision import transforms
 import numpy as np

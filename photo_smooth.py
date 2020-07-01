@@ -4,7 +4,7 @@ Licensed under the CC BY-NC-SA 4.0 license (https://creativecommons.org/licenses
 """
 from __future__ import division
 import torch.nn as nn
-import scipy.misc
+# import scipy.misc
 import numpy as np
 import scipy.sparse
 import scipy.sparse.linalg
@@ -20,13 +20,15 @@ class Propagator(nn.Module):
     def process(self, initImg, contentImg):
 
         if type(contentImg) == str:
-            content = scipy.misc.imread(contentImg, mode='RGB')
+            # content = scipy.misc.imread(contentImg, mode='RGB')
+            content = imageio.imread(contentImg, format='RGB')
         else:
             content = contentImg.copy()
         # content = scipy.misc.imread(contentImg, mode='RGB')
 
         if type(initImg) == str:
-            B = scipy.misc.imread(initImg, mode='RGB').astype(np.float64) / 255
+            # B = scipy.misc.imread(initImg, mode='RGB').astype(np.float64) / 255
+            B = imageio.imread(initImg, mode='RGB').astype(np.float64) / 255
         else:
             B = scipy.asarray(initImg).astype(np.float64) / 255
             # B = self.
@@ -35,7 +37,12 @@ class Propagator(nn.Module):
         h = h1 - 4
         w = w1 - 4
         B = B[int((h1-h)/2):int((h1-h)/2+h),int((w1-w)/2):int((w1-w)/2+w),:]
-        content = scipy.misc.imresize(content,(h,w))
+        # content = scipy.misc.imresize(content,(h,w))
+        if isinstance(content, Image.Image):
+            content = content.resize((h, w))
+        else:
+            content = Image.fromarray(content).resize((h, w))
+        content = np.array(content)
         B = self.__replication_padding(B,2)
         content = self.__replication_padding(content,2)
         content = content.astype(np.float64)/255
@@ -57,7 +64,7 @@ class Propagator(nn.Module):
         V = V*(1-self.beta)
         V = V.reshape(h1,w1,k)
         V = V[2:2+h,2:2+w,:]
-        
+
         img = Image.fromarray(np.uint8(np.clip(V * 255., 0, 255.)))
         return img
 
