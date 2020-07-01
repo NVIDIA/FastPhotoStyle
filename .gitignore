@@ -12,3 +12,7 @@ notebooks/.ipynb_checkpoints/*
 *.zip
 *.pkl
 *.pyc
+
+# Add the images explicitly
+*.jpg
+*.png
