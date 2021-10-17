@@ -54,7 +54,7 @@ class PhotoWCT(nn.Module):
         return Im1
 
     def __compute_label_info(self, cont_seg, styl_seg):
-        if cont_seg.size == False or styl_seg.size == False:
+        if cont_seg.size is False or styl_seg.size is False:
             return
         max_label = np.max(cont_seg) + 1
         self.label_set = np.unique(cont_seg)
