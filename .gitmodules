@@ -1,0 +1,3 @@
+[submodule "segmentation"]
+	path = segmentation
+	url = git@github.com:dustycodes/semantic-segmentation-pytorch.git

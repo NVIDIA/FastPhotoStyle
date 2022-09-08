@@ -1,0 +1,28 @@
+{
+    "image": "stixxer/semantic-segmentation-pytorch:latest",
+    // "build.dockerfile": "../Dockerfile",
+    // "build.context": "../",
+    // "dockerFile": "../Dockerfile",
+    "forwardPorts": [],
+    "customizations": {
+        // Configure properties specific to VS Code.
+        "vscode": {
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+                "ms-python.python",
+                "donjayamanne.python-environment-manager",
+                "amazonwebservices.aws-toolkit-vscode",
+                "Boto3typed.boto3-ide",
+                "mikestead.dotenv"
+            ]
+        }
+    },
+    "runArgs": [
+        "--gpus",
+        "all"
+    ],
+    "context": "..",
+    "mounts": [
+        // "type=bind,source=/media,target=/media"
+    ]
+}

@@ -9,17 +9,17 @@ import torch
 import process_stylization_ade20k_ssn
 from torch import nn
 from photo_wct import PhotoWCT
-from segmentation.dataset import round2nearest_multiple
-from segmentation.models import ModelBuilder, SegmentationModule
-from lib.nn import user_scattered_collate, async_copy_to
-from lib.utils import as_numpy, mark_volatile
+from segmentation.mit_semseg.dataset import round2nearest_multiple
+from segmentation.mit_semseg.models import ModelBuilder, SegmentationModule
+from segmentation.mit_semseg.lib.nn import user_scattered_collate, async_copy_to
+from segmentation.mit_semseg.lib.utils import as_numpy, mark_volatile
 from scipy.misc import imread, imresize
 import cv2
 from torchvision import transforms
 import numpy as np
 
 parser = argparse.ArgumentParser(description='Photorealistic Image Stylization')
-parser.add_argument('--model_path', help='folder to model path', default='baseline-resnet50_dilated8-ppm_bilinear_deepsup')
+parser.add_argument('--model_path', help='folder to model path', default='ade20k-resnet50dilated-ppm_deepsup')
 parser.add_argument('--suffix', default='_epoch_20.pth', help="which snapshot to load")
 parser.add_argument('--arch_encoder', default='resnet50_dilated8', help="architecture of net_encoder")
 parser.add_argument('--arch_decoder', default='ppm_bilinear_deepsup', help="architecture of net_decoder")
@@ -51,10 +51,11 @@ segReMapping = process_stylization_ade20k_ssn.SegReMapping(args.label_mapping)
 
 # Absolute paths of segmentation model weights
 SEG_NET_PATH = 'segmentation'
-args.weights_encoder = os.path.join(SEG_NET_PATH,args.model_path, 'encoder' + args.suffix)
-args.weights_decoder = os.path.join(SEG_NET_PATH,args.model_path, 'decoder' + args.suffix)
-args.arch_encoder = 'resnet50_dilated8'
-args.arch_decoder = 'ppm_bilinear_deepsup'
+args.weights_encoder = os.path.join(SEG_NET_PATH, "ckpt", args.model_path, 'encoder' + args.suffix)
+args.weights_decoder = os.path.join(SEG_NET_PATH, "ckpt", args.model_path, 'decoder' + args.suffix)
+args.arch_encoder = 'resnet50dilated'
+args.arch_decoder = 'ppm_deepsup'
+# args.arch_decoder = 'ppm_bilinear_deepsup'
 args.fc_dim = 2048
 
 # Load semantic segmentation network module
